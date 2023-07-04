@@ -23,7 +23,7 @@ jobs:
         with:
           repository: "openmm/openmm"
           zipBall: true
-          latest: false
+          tag: "v8.0.0"
           extract: true
 
       - name: Get python package
