@@ -47,27 +47,28 @@ jobs:
         if: startsWith(matrix.os, 'windows')
 
       - name: cmake python package
+        if: ${{ runner.os == 'Windows'  }}
         run: |
           cd openmm-openmm-a780005
           mkdir build
           cd build
           cmake ..
-
-      - if: ${{ runner.os == 'Windows'  }}
-        run: |
-          dir 
+          dir
           MSBuild.exe OpenMM.sln /property:Configuration=Release
+          move python/* ../../
+          cd ../../
+          dir
 
-      - if: ${{ runner.os != 'Windows' }}
+      - name: cmake python package
+        if: ${{ runner.os != 'Windows' }}
         run: |
-          ls -lh
+          cd openmm-openmm-a780005
+          mkdir build
+          cd build
+          cmake ..
           make
-
-      - name: move file
-        run: |
           mv python/* ../../
           cd ../../
-          rm -rf openmm-*
           ls -lh
 
       - name: Build Wheels
