@@ -25,6 +25,7 @@ jobs:
           fileName: "*.zip"
           zipBall: true
           latest: true
+          extract: true
 
       - name: Get python package
         run: |
