@@ -75,7 +75,7 @@ jobs:
       - name: Build Wheels
         uses: pypa/cibuildwheel@v2.13.1
         env:
-          CIBW_ARCHS: x86_64
+          CIBW_ARCHS: native
           CIBW_BUILD_VERBOSITY: 3
           CIBW_BUILD: cp310-*
           CIBW_SKIP: pp* *musllinux*
