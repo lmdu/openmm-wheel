@@ -24,15 +24,18 @@ jobs:
           repository: "openmm/openmm"
           tarBall: true
           latest: true
-          extract: true
 
       - name: Get python package
         run: |
-          ls -l
+          cmake --version
+          tar xzvf openmm-8.0.0.tar.gz
           cd openmm-8.0.0
           mkdir build
           cd build
-          cmake --version
+          cmake ..
+          mv build/* ../../
+          cd ../../
+          ls -lh
 
       - uses: actions/setup-python@v4
         with:
@@ -47,7 +50,7 @@ jobs:
           CIBW_SKIP: pp* *musllinux*
           #CIBW_MANYLINUX_X86_64_IMAGE: manylinux_2_28
           #CIBW_BEFORE_BUILD_MACOS:
-          CIBW_BEFORE_BUILD_LINUX: cmake --version
+          CIBW_BEFORE_BUILD_LINUX: cmake --version && ./install_openmm.sh
 
       - run: ls -l wheelhouse
 
