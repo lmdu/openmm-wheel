@@ -37,6 +37,7 @@ jobs:
           mkdir build
           cd build
           cmake ..
+          make
           mv python/* ../../
           cd ../../
           rm -rf openmm-*
