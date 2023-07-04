@@ -29,9 +29,10 @@ jobs:
           version: '1.9.5'
 
       - name: Install swig
-        uses: johnwason/swig-build-action@v1
-        with:
-          version: '4.0.2'
+        swig.exe --version
+        #uses: johnwason/swig-build-action@v1
+        #with:
+        #  version: '4.0.2'
 
       - name: Download openmm
         uses: robinraju/release-downloader@v1.8
