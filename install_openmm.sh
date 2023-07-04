@@ -1,4 +1,4 @@
-yum install doxygen cmake swig
+yum install doxygen swig
 wget https://github.com/openmm/openmm/archive/refs/tags/8.0.0.tar.gz
 tar xzvf 8.0.0.tar.gz
 cd openmm-8.0.0

@@ -39,6 +39,7 @@ jobs:
           cmake ..
           mv python/* ../../
           cd ../../
+          rm -rf openmm-*
           ls -lh
 
       - name: Build Wheels
