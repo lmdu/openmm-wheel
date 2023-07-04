@@ -29,8 +29,6 @@ jobs:
       - name: Get python package
         run: |
           cd openmm-openmm-a780005
-          ls -lh
-          cd openmm-8.0.0
           mkdir build
           cd build
           cmake ..
