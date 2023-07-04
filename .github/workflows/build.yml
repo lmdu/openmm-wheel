@@ -52,10 +52,10 @@ jobs:
           cd build
           cmake ..
 
-      - if: startsWith(matrix.os, 'windows')
+      - if: ${{ runner.os == 'Windows'  }}
         run: MSBuild.exe OpenMM.sln /property:Configuration=Release
 
-      - if: ! startsWith(matrix.os, 'windows')
+      - if: ${{ runner.os != 'Windows' }}
         run: make
 
       - name: move file
