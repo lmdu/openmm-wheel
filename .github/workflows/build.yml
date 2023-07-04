@@ -22,11 +22,13 @@ jobs:
         uses: robinraju/release-downloader@v1.8
         with:
           repository: "openmm/openmm"
-          tarBall: true
+          fileName: "*.zip"
+          zipBall: true
           latest: true
 
       - name: Get python package
         run: |
+          ls -lh
           cmake --version
           tar xzvf openmm-8.0.0.tar.gz
           cd openmm-8.0.0
