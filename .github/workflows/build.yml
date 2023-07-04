@@ -13,11 +13,23 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Setup cmake
+        uses: jwlawson/actions-setup-cmake@v1.14
+        with:
+          cmake-version: '3.17.x'
+
       - name: Download openmm
+        uses: robinraju/release-downloader@v1.8
+        repository: "openmm/openmm"
+        latest: true
+        extract: true
+
+      - name: Get python package
         run: |
-          wget https://github.com/openmm/openmm/archive/refs/tags/8.0.0.tar.gz
-          tar xzvf 8.0.0.tar.gz
-          ls -l
+          cd openmm-8.0.0
+          mkdir build
+          cd build
+          cmake --version
 
       - uses: actions/setup-python@v4
         with:
@@ -28,6 +40,7 @@ jobs:
         env:
           CIBW_ARCHS: x86_64
           CIBW_BUILD_VERBOSITY: 1
+          CIBW_BUILD: cp310-*
           CIBW_SKIP: pp* *musllinux*
           #CIBW_MANYLINUX_X86_64_IMAGE: manylinux_2_28
           #CIBW_BEFORE_BUILD_MACOS:
