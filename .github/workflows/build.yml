@@ -52,6 +52,7 @@ jobs:
           mkdir build
           cd build
           cmake ..
+          ls -lh
 
       - if: ${{ runner.os == 'Windows'  }}
         run: MSBuild.exe OpenMM.sln /property:Configuration=Release
