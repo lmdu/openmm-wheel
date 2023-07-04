@@ -22,8 +22,8 @@ jobs:
         uses: robinraju/release-downloader@v1.8
         with:
           repository: "openmm/openmm"
-          zipBall: true
-          tag: "v8.0.0"
+          fileName: "*.zip"
+          latest: true
           extract: true
 
       - name: Get python package
