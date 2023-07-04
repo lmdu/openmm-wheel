@@ -81,8 +81,8 @@ jobs:
           CIBW_SKIP: pp* *musllinux*
           CIBW_MANYLINUX_X86_64_IMAGE: manylinux_2_28
           #CIBW_BEFORE_BUILD_MACOS:
-          #CIBW_BEFORE_BUILD: pip install numpy cython
-          CIBW_ENVIRONMENT_WINDOWS: OPENMM_INCLUDE_PATH="C:\\Program Files\\openmm\\include" OPENMM_LIB_PATH="C:\\Program Files\\openmm\\lib"
+          CIBW_BEFORE_BUILD: pip install numpy cython
+          CIBW_ENVIRONMENT_WINDOWS: OPENMM_INCLUDE_PATH="C:\\Program Files\\OpenMM\\include" OPENMM_LIB_PATH="C:\\Program Files\\OpenMM\\lib"
           CIBW_ENVIRONMENT_LINUX: OPENMM_INCLUDE_PATH=/usr/local/openmm/include OPENMM_LIB_PATH=/usr/local/openmm/lib
           CIBW_BEFORE_BUILD_LINUX: chmod +x install_openmm.sh && ./install_openmm.sh
 
