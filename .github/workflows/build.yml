@@ -52,12 +52,13 @@ jobs:
           mkdir build
           cd build
           cmake ..
-          ls -lh
 
       - if: ${{ runner.os == 'Windows'  }}
+        dir
         run: MSBuild.exe OpenMM.sln /property:Configuration=Release
 
       - if: ${{ runner.os != 'Windows' }}
+        ls -lh
         run: make
 
       - name: move file
