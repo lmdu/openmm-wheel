@@ -9,7 +9,7 @@ jobs:
     strategy:
       matrix:
         #os: [ubuntu-20.04]
-        os: [windows-2019, macos-11]
+        os: [windows-2019, macos-11, ubuntu-20.04]
 
     steps:
       - uses: actions/checkout@v3
@@ -68,6 +68,7 @@ jobs:
           cd build
           cmake ..
           make
+          make install
           mv python/* ../../
           cd ../../
           ls -lh
