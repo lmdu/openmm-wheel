@@ -54,12 +54,14 @@ jobs:
           cmake ..
 
       - if: ${{ runner.os == 'Windows'  }}
-        dir
-        run: MSBuild.exe OpenMM.sln /property:Configuration=Release
+        run: |
+          dir 
+          MSBuild.exe OpenMM.sln /property:Configuration=Release
 
       - if: ${{ runner.os != 'Windows' }}
-        ls -lh
-        run: make
+        run: |
+          ls -lh
+          make
 
       - name: move file
         run: |
