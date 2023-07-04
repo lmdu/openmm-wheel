@@ -20,9 +20,10 @@ jobs:
 
       - name: Download openmm
         uses: robinraju/release-downloader@v1.8
-        repository: "openmm/openmm"
-        latest: true
-        extract: true
+        with:
+          repository: "openmm/openmm"
+          latest: true
+          extract: true
 
       - name: Get python package
         run: |
