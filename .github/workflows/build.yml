@@ -46,7 +46,7 @@ jobs:
         uses: microsoft/setup-msbuild@v1.1
         if: startsWith(matrix.os, 'windows')
 
-      - name: cmake python package
+      - name: Windows cmake
         if: ${{ runner.os == 'Windows'  }}
         run: |
           cd openmm-openmm-a780005
@@ -60,8 +60,8 @@ jobs:
           cd ../../
           dir
 
-      - name: cmake python package
-        if: ${{ runner.os != 'Windows' }}
+      - name: MacOS cmake
+        if: ${{ runner.os == 'macOS' }}
         run: |
           cd openmm-openmm-a780005
           mkdir build
@@ -69,6 +69,18 @@ jobs:
           cmake ..
           make
           make install
+          mv python/* ../../
+          cd ../../
+          ls -lh
+
+      - name: Linux cmake
+        if: ${{ runner.os == 'Linux' }}
+        run: |
+          cd openmm-openmm-a780005
+          mkdir build
+          cd build
+          cmake ..
+          make
           mv python/* ../../
           cd ../../
           ls -lh
