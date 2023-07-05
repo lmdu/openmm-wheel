@@ -8,8 +8,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-11]
-        #os: [windows-2019, macos-11, ubuntu-20.04]
+        os: [windows-2019, macos-11, ubuntu-20.04]
 
     steps:
       - uses: actions/checkout@v3
@@ -67,7 +66,6 @@ jobs:
           cd build
           cmake ..
           make
-          sudo make install
           mv python/* ../../
           cd ../../
           ls -lh
@@ -88,7 +86,6 @@ jobs:
         uses: pypa/cibuildwheel@v2.13.1
         env:
           CIBW_ARCHS: native
-          CIBW_BUILD_VERBOSITY: 1
           #CIBW_BUILD: cp38-*
           CIBW_SKIP: pp* *musllinux*
           CIBW_MANYLINUX_X86_64_IMAGE: manylinux_2_28
