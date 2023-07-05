@@ -99,7 +99,7 @@ jobs:
           CIBW_ENVIRONMENT_WINDOWS: OPENMM_INCLUDE_PATH="C:\\Program Files\\OpenMM\\include" OPENMM_LIB_PATH="C:\\Program Files\\OpenMM\\lib"
           CIBW_ENVIRONMENT_MACOS: OPENMM_INCLUDE_PATH=/usr/local/openmm/include OPENMM_LIB_PATH=/usr/local/openmm/lib
           CIBW_ENVIRONMENT_LINUX: OPENMM_INCLUDE_PATH=/usr/local/openmm/include OPENMM_LIB_PATH=/usr/local/openmm/lib
-          CIBW_REPAIR_WHEEL_COMMAND_WINDOWS: "delvewheel repair -w {dest_dir} {wheel} --add-path C:\\Program Files\\OpenMM\\lib"
+          CIBW_REPAIR_WHEEL_COMMAND_WINDOWS: delvewheel repair -w {dest_dir} {wheel} --add-path "C:\\Program Files\\OpenMM\\lib"
           
 
       - run: ls -l wheelhouse
