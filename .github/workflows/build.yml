@@ -8,8 +8,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        #os: [ubuntu-20.04]
-        os: [windows-2019, macos-11, ubuntu-20.04]
+        os: [macos-11]
+        #os: [windows-2019, macos-11, ubuntu-20.04]
 
     steps:
       - uses: actions/checkout@v3
@@ -59,7 +59,6 @@ jobs:
           cd ../../
           dir
 
-
       - name: MacOS cmake
         if: ${{ runner.os == 'macOS' }}
         run: |
@@ -89,19 +88,17 @@ jobs:
         uses: pypa/cibuildwheel@v2.13.1
         env:
           CIBW_ARCHS: native
-          CIBW_BUILD_VERBOSITY: 3
-          CIBW_BUILD: cp38-*
+          CIBW_BUILD_VERBOSITY: 1
+          #CIBW_BUILD: cp38-*
           CIBW_SKIP: pp* *musllinux*
           CIBW_MANYLINUX_X86_64_IMAGE: manylinux_2_28
-          #CIBW_BEFORE_BUILD_MACOS:
           CIBW_BEFORE_BUILD: pip install numpy cython delvewheel
           CIBW_BEFORE_BUILD_LINUX: chmod +x linux_install_openmm.sh && ./linux_install_openmm.sh
           CIBW_BEFORE_BUILD_MACOS: chmod +x macos_install_openmm.sh && ./macos_install_openmm.sh
           CIBW_ENVIRONMENT_WINDOWS: OPENMM_INCLUDE_PATH="C:\\Program Files\\OpenMM\\include" OPENMM_LIB_PATH="C:\\Program Files\\OpenMM\\lib"
-          CIBW_ENVIRONMENT_MACOS: OPENMM_INCLUDE_PATH=/usr/local/openmm/include OPENMM_LIB_PATH=/usr/local/openmm/lib
+          CIBW_ENVIRONMENT_MACOS: OPENMM_INCLUDE_PATH=/usr/local/openmm/include OPENMM_LIB_PATH=/usr/local/openmm/lib DYLD_LIBRARY_PATH=/usr/local/openmm/lib
           CIBW_ENVIRONMENT_LINUX: OPENMM_INCLUDE_PATH=/usr/local/openmm/include OPENMM_LIB_PATH=/usr/local/openmm/lib
           CIBW_REPAIR_WHEEL_COMMAND_WINDOWS: delvewheel repair -w {dest_dir} {wheel} --add-path "C:\\Program Files\\OpenMM\\lib"
-          
 
       - run: ls -l wheelhouse
 
